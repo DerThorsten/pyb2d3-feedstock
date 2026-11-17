@@ -10,11 +10,12 @@ source:
   url: https://github.com/DerThorsten/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
   sha256: c3d3b4da6d8ab49946f290ff4ab864b9c0143c82d81df7f893ab03a0e4162cd9
 
+
 build:
   number: 0
 
 outputs:
-  - package: 
+  - package:
       name: pyb2d3
       version: ${{ version }}
 
@@ -22,13 +23,13 @@ outputs:
       skip:
           - match(python, "<3.12")
       script: ${{ PYTHON }} -m pip install . --no-deps -vv  --config-settings=cmake.define.FETCH_BOX2D=OFF --config-settings=cmake.define.Python_EXECUTABLE=${{ PYTHON }}
-    
+
     requirements:
       build:
         - if: build_platform != target_platform
           then:
             - python
-            - cross-python_${{ target_platform }} 
+            - cross-python_${{ target_platform }}
             - numpy
             - scikit-build-core
             - pip
