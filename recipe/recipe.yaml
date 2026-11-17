@@ -19,6 +19,8 @@ outputs:
       version: ${{ version }}
 
     build:
+      skip:
+          - match(python, "<3.12")
       script: ${{ PYTHON }} -m pip install . --no-deps -vv  --config-settings=cmake.define.FETCH_BOX2D=OFF --config-settings=cmake.define.Python_EXECUTABLE=${{ PYTHON }}
     
     requirements:
